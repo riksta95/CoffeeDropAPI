@@ -1,0 +1,114 @@
+{
+	"info": {
+		"name": "CoffeeDrop",
+		"_postman_id": "df15e329-169f-df36-623d-78cd2cdc1350",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"name\": \"John Doe\",\n      \"email\": \"test@test.com\",\n      \"password\":\"PASSWORD\"\n}\n\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register"
+				},
+				"description": "Register user from provided request"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"email\": \"test@test.com\",\n      \"password\":\"PASSWORD\"\n}\n\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login"
+				},
+				"description": "Login user from provided request"
+			},
+			"response": []
+		},
+		{
+			"name": "location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/location/POSTCODE"
+				},
+				"description": "Returns the address and opening times of the nearest CoffeeDrop location"
+			},
+			"response": []
+		},
+		{
+			"name": "location",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"postcode\": \"CV313PP\",\n      \"opening_times\": {\"monday\" : \"09:00\", \"tuesday\" : \"09:00\", \"saturday\" : \"08:30\"},\n      \"closing_times\": {\"monday\" : \"19:00\", \"tuesday\" : \"19:00\", \"saturday\" : \"18:30\"}\n}\n\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/location"
+				},
+				"description": "Creates location based on provided input"
+			},
+			"response": []
+		},
+		{
+			"name": "cashback",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"Ristretto\": 10,\n      \"Espresso\": 100,\n      \"Lungo\":30\n}\n\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cashback"
+				},
+				"description": "Get cashback based on coffee pods purchased by user request"
+			},
+			"response": []
+		},
+		{
+			"name": "marketing",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/marketing"
+				},
+				"description": "Get last 5 cashback information from database for marketing team"
+			},
+			"response": []
+		}
+	]
+}

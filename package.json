@@ -12,8 +12,25 @@
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^7.0",
+        "husky": "^1.2.0",
         "laravel-mix": "^5.0.1",
+        "lint-staged": "^8.1.0",
         "lodash": "^4.17.19",
-        "resolve-url-loader": "^3.1.0"
+        "resolve-url-loader": "^3.1.0",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "linters": {
+            "*.php": [
+                "vendor/bin/phpcs --standard=psr2",
+                "git add"
+            ]
+        },
+        "ignore": []
     }
 }
