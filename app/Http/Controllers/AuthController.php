@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController
 {
@@ -12,12 +14,22 @@ class AuthController
      * Register user from provided request
      * @return JsonResponse
      */
-    public function register()
+    public function register(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 400);
+        }
+            
         $user = User::create([
-            'name' => request()->input('name'),
-            'email' => request()->input('email'),
-            'password' => Hash::make(request()->input('password')),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
         ]);
 
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
